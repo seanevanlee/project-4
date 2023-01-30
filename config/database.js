@@ -1,12 +1,11 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 mongoose.connect(
-  'mongodb://127.0.0.1:27017/test'// < replace with your database name!
-
+  "mongodb://127.0.0.1:27017/dotaproject" // < replace with your database name!
 );
 
 const db = mongoose.connection;
 
-db.on('connected', function() {
+db.on("connected", function () {
   console.log(`Connected to MongoDB at ${db.host}:${db.port}`);
 });
