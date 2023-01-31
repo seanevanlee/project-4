@@ -1,15 +1,12 @@
-import express from 'express';
+import express from "express";
 const router = express.Router();
-import usersCtrl  from '../../controllers/users.js';
+import usersCtrl from "../../controllers/users.js";
 
 /*---------- Public Routes ----------*/
-router.post('/signup', usersCtrl.signup);
-router.post('/login', usersCtrl.login);
-
+router.post("/signup", usersCtrl.signup);
+router.post("/login", usersCtrl.login);
+// router.get("/:username", usersCtrl.profile);
 
 /*---------- Protected Routes ----------*/
-
-
-
 
 export default router;
