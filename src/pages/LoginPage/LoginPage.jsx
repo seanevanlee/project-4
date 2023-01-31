@@ -1,7 +1,8 @@
 import React from 'react';
 import './LoginPage.css';
 import { useNavigate, Link } from "react-router-dom";
-
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import userService from "../../utils/userService";
 
 import {
   Button,
@@ -11,11 +12,11 @@ import {
   Image,
   Message,
   Segment,
-  Checkbox,
 } from "semantic-ui-react";
 import { useState } from 'react';
 
 export default function LoginPage(props){
+  const [error, setError] = useState("");
    const [state, setState] = useState ({
     email: "",
     password: "",
@@ -50,7 +51,7 @@ const navigate = useNavigate();
         <Header as="h2" color="black" textAlign="center">
           <Image style = {{ width: 500, height: 500 }} src="https://i.imgur.com/NK6Ofjs.jpg" /> Login
         </Header>
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <Segment stacked>
             <Form.Input
               type="email"
