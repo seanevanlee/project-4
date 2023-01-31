@@ -19,15 +19,33 @@ export default function App() {
   function handleSignUpOrLogin() {
     setUser(userService.getUser()); // getUser, gets the jwt from localstorage and decodes it
   }
+  function handleLogout() {
+
+    console.log('being called')
+    userService.logout();
+    setUser(null);
+  }
+  if (user) {
 // function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />}/>
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
       <Route path="/signup" element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
+      {/* <Route path="/:username" element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />} /> */}
       <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
   );
+}
+return (
+<Routes>
+<Route path="/" element={<HomePage />}/>
+<Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
+<Route path="/signup" element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
+<Route path="/:username" element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />} />
+<Route path="/*" element={<Navigate to="/login" />} />
+</Routes>
+);
 }
 
 //pass down a function
