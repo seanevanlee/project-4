@@ -1,32 +1,22 @@
+# DOTA2: Create a new hero!
 
-# Mern Boilerplate
+As of January 2023, there are currently 123 playable heroes. A hero has three traits -- intelligence, strength, and agility. Each hero has one of these three traits as the highest and combined with unique skills, each hero is truly one of a kind.
 
-This is a mern Boilerplate using vite to compile the frontend.  
+The major DOTA tournament, The International, is a popular time to realise a new hero idea and 2023's is no exception. A new hero, Muerta, will be shown.
 
-##### Things to note
+A lot of thinking goes into creating a new hero and certainly DOTA's developer studio, Valve, has a world-class team to innovate. However, I wonder if Valve ever takes into consideration what the fans want?
 
-1. The server code is using `import`, currently you have to add the file extension in the server code. 
+##### Screenshots
 
-2.  Note the `index.html` for the code needed to be added for hot reloading and etc... 
+here
 
-3. Code is setup to use `JWT` auth
+#### Technologies Used:
 
-4. Take a look at the server.js code, there is some es6 things to setup `__dirname`
+here
 
+##### Getting Started:
 
-#### Setup 
+A link to the deployed app (Heroku)
+A link to the Trello board used for the project's planning that includes user stories, wireframes & an ERD.
 
-1. ```npm install```
-2. ```npm run dev```
-3. setup `.env` file 
-
-- .env file 
-
-```
-SECRET=seiRocks!
-```
-
-##### Starting the App
-
-- One terminal
-command - ```npm run dev```
+##### Next Steps:

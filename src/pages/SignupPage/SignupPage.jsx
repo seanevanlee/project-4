@@ -19,13 +19,14 @@ function SignUpPage({handleSignUpOrLogin}) {
     async function handleSubmit(e) {
       e.preventDefault();
       for (let key in state) {
-        formData.append(key, state[key]);
+      //   formData.append(key, state[key]);
+      // }
+      // console.log(formData.forEach((item) => console.log(item)));
+      setState(key, state[key]);
       }
-      console.log(formData.forEach((item) => console.log(item)));
-
-	try {
-		
-		await userService.signup(formData);
+	    try {
+		await userService.signup(state);
+		// await userService.signup(formData);
         handleSignUpOrLogin();
         navigate('/')
 
