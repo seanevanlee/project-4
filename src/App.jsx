@@ -6,7 +6,7 @@ import HomePage from "./pages/HomePage/HomePage";
 
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignupPage/SignupPage";
-// import FeedPage from "./pages/FeedPage/FeedPage";
+import FeedPage from "./pages/FeedPage/FeedPage";
 // import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 import userService from "./utils/userService";
@@ -29,7 +29,7 @@ export default function App() {
 // function App() {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />}/>
+      <Route path="/" element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}/>
       <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
       <Route path="/signup" element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       {/* <Route path="/:username" element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />} /> */}
@@ -42,7 +42,7 @@ return (
 <Route path="/" element={<HomePage />}/>
 <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
 <Route path="/signup" element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-<Route path="/:username" element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />} />
+{/* <Route path="/:username" element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />} /> */}
 <Route path="/*" element={<Navigate to="/login" />} />
 </Routes>
 );
