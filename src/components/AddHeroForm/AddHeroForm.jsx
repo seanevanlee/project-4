@@ -3,11 +3,16 @@ import { useState } from "react";
 import { Form, Segment, Button } from "semantic-ui-react";
 
 function AddHeroForm({handleAddPost}) {
-  const [caption, setCaption] = useState('');
+  const [hero, setHero] = useState('');
+  const [upgrade, setUpgrade] = useState('');
   const [photo, setPhoto] = useState(null)
 
-  function handleChange(e){
-	setCaption(e.target.value)
+  function handleHeroChange(e){
+	setHero(e.target.value)
+  }
+
+  function handleUpgradeChange(e){
+	setUpgrade(e.target.value)
   }
 
   function handleFileInput(e){
@@ -18,8 +23,9 @@ function AddHeroForm({handleAddPost}) {
 	e.preventDefault();
 
   const formData = new FormData()
-	formData.append('caption', caption);
-	formData.append('photo', photo)
+	formData.append('hero', hero);
+    formData.append('upgrade', upgrade);
+	formData.append('photo', photo);
 	handleAddPost(formData)
   }
   return (
@@ -27,10 +33,18 @@ function AddHeroForm({handleAddPost}) {
       <Form autoComplete="off" onSubmit={handleSubmit}>
         <Form.Input
           className="form-control"
-          name="caption"
-          value={caption}
+          name="hero"
+          value={hero}
           placeholder="New Hero Name"
-          onChange={handleChange}
+          onChange={handleHeroChange}
+          required
+        />
+         <Form.Input
+          className="upgrade-control"
+          name="upgrade"
+          value={upgrade}
+          placeholder="Aghanim's Scepter Upgrade"
+          onChange={handleUpgradeChange}
           required
         />
         <Form.Input

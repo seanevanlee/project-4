@@ -3,7 +3,7 @@ import AddHeroForm from "../../components/AddHeroForm/AddHeroForm";
 import { useState, useEffect } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { Grid } from "semantic-ui-react";
-
+import HeroDisplay from "../../components/HeroDisplay/HeroDisplay";
 import * as postsAPI from "../../utils/postApi";
 // import * as likesAPI from "../../utils/likeApi";
 
