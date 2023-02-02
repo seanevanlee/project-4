@@ -10,7 +10,8 @@ const likesSchema = mongoose.Schema({
 const postSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: "User" }, // referencing a model
   photoUrl: String,
-  caption: String,
+  hero: String,
+  heroUltimate: String,
   likes: [likesSchema],
 });
 

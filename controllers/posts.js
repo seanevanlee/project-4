@@ -17,7 +17,7 @@ function create(req, res) {
 
   if (!req.file) return res.status(400).json({ err: "No file was submitted" });
 
-  const key = `pupstagram/posts/${uuidv4()}-${req.file.originalname}`;
+  const key = `dotaproject/posts/${uuidv4()}-${req.file.originalname}`;
   const params = { Bucket: BUCKET_NAME, Key: key, Body: req.file.buffer };
 
   s3.upload(params, async function (err, data) {
@@ -30,7 +30,8 @@ function create(req, res) {
     try {
       const post = await Post.create({
         user: req.user._id,
-        caption: req.body.caption,
+        hero: req.body.hero,
+        heroUltimate: req.body.heroUltimate,
         photoUrl: data.Location, // <- this is from aws, it is the URL that our picture exists at in s3 bucket
       });
 

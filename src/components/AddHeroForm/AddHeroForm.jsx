@@ -2,31 +2,31 @@ import { set } from "mongoose";
 import { useState } from "react";
 import { Form, Segment, Button } from "semantic-ui-react";
 
-function AddHeroForm({handleAddPost}) {
-  const [hero, setHero] = useState('');
-  const [upgrade, setUpgrade] = useState('');
-  const [photo, setPhoto] = useState(null)
+function AddHeroForm({ handleAddPost }) {
+  const [hero, setHero] = useState("");
+  const [heroUltimate, setHeroUltimate] = useState("");
+  const [photo, setPhoto] = useState(null);
 
-  function handleHeroChange(e){
-	setHero(e.target.value)
+  function handleHeroChange(e) {
+    setHero(e.target.value);
   }
 
-  function handleUpgradeChange(e){
-	setUpgrade(e.target.value)
+  function handleHeroUltimateChange(e) {
+    setHeroUltimate(e.target.value);
   }
 
-  function handleFileInput(e){
-	setPhoto(e.target.files[0])
+  function handleFileInput(e) {
+    setPhoto(e.target.files[0]);
   }
 
-  function handleSubmit(e){
-	e.preventDefault();
+  function handleSubmit(e) {
+    e.preventDefault();
 
-  const formData = new FormData()
-	formData.append('hero', hero);
-    formData.append('upgrade', upgrade);
-	formData.append('photo', photo);
-	handleAddPost(formData)
+    const formData = new FormData();
+    formData.append("hero", hero);
+    formData.append("heroUltimate", heroUltimate);
+    formData.append("photo", photo);
+    handleAddPost(formData);
   }
   return (
     <Segment>
@@ -39,12 +39,12 @@ function AddHeroForm({handleAddPost}) {
           onChange={handleHeroChange}
           required
         />
-         <Form.Input
-          className="upgrade-control"
-          name="upgrade"
-          value={upgrade}
+        <Form.Input
+          className="heroUltimate-control"
+          name="heroUltimate"
+          value={heroUltimate}
           placeholder="Aghanim's Scepter Upgrade"
-          onChange={handleUpgradeChange}
+          onChange={handleHeroUltimateChange}
           required
         />
         <Form.Input

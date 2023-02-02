@@ -26,14 +26,12 @@ export default function App() {
     setUser(null);
   }
   if (user) {
-// function App() {
+// Find the route that matches with the browser, authenticated routes vs non:
   return (
     <Routes>
       <Route path="/" element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}/>
-      <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
-      <Route path="/signup" element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
       {/* <Route path="/:username" element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />} /> */}
-      <Route path="/*" element={<Navigate to="/login" />} />
+      <Route path="/*" element={<Navigate to="/" />} />
     </Routes>
   );
 }
