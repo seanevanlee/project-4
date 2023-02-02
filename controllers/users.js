@@ -1,10 +1,10 @@
 import User from "../models/user.js";
 import Post from "../models/post.js";
 import jwt from "jsonwebtoken";
-import S3 from "aws-sdk/clients/s3.js";
+// import S3 from "aws-sdk/clients/s3.js";
 import { v4 as uuidv4 } from "uuid";
-
-const s3 = new S3();
+import { s3 } from "../config/s3-config.js";
+// const s3 = new S3();
 
 const SECRET = process.env.SECRET;
 
@@ -53,38 +53,39 @@ async function signup(req, res) {
     " <- this is req.file"
   );
 
-  if (!req.file)
-    return res.status(400).json({ error: "Please Submit a Photo" });
+  // if (!req.file)
+  //   return res.status(400).json({ error: "Please Submit a Photo" });
 
   // where we will store our image on aws s3 bucket
-  const filePath = `pupstagram/${uuidv4()}-${req.file.originalname}`;
-  const params = { Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer }; // req.file.buffer is the actually from the form when it was sent to our express server
+  // const filePath = `pupstagram/${uuidv4()}-${req.file.originalname}`;
+  // const params = { Bucket: BUCKET_NAME, Key: filePath, Body: req.file.buffer }; // req.file.buffer is the actually from the form when it was sent to our express server
   // s3.upload is making the request to s3
-  s3.upload(params, async function (err, data) {
-    // < inside the function in the response from aws
-    if (err) {
-      console.log("===============================");
-      console.log(
-        err,
-        " <- error from aws, Probably telling you your keys arent correct"
-      );
-      console.log("===============================");
-      return res
-        .status(400)
-        .json({ error: "error from aws, check your terminal" });
-    }
+  // s3.upload(params, async function (err, data) {
+  //   // < inside the function in the response from aws
+  //   if (err) {
+  //     console.log("===============================");
+  //     console.log(
+  //       err,
+  //       " <- error from aws, Probably telling you your keys arent correct"
+  //     );
+  //     console.log("===============================");
+  //     return res
+  //       .status(400)
+  //       .json({ error: "error from aws, check your terminal" });
+  //   }
 
-    const user = new User({ ...req.body, photoUrl: data.Location }); // data.Location is the url for your image on aws
-    try {
-      await user.save(); // user model .pre('save') function is running which hashes the password
-      const token = createJWT(user);
-      res.json({ token }); // set('toJSON',) in user model is being called, and deleting the users password from the token
-    } catch (error) {
-      // Probably a duplicate email
-      console.log(error);
-      res.status(400).json(error);
-    }
-  }); // end of the s3 callback
+  const user = new User({ ...req.body });
+  // photoUrl: data.Location }); // data.Location is the url for your image on aws
+  try {
+    await user.save(); // user model .pre('save') function is running which hashes the password
+    const token = createJWT(user);
+    res.json({ token }); // set('toJSON',) in user model is being called, and deleting the users password from the token
+  } catch (error) {
+    // Probably a duplicate email
+    console.log(error);
+    res.status(400).json(error);
+  }
+  // }); // end of the s3 callback
 } // end of signup
 
 async function login(req, res) {

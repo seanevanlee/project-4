@@ -1,5 +1,5 @@
-import React from 'react';
-import './LoginPage.css';
+import React from "react";
+import "./LoginPage.css";
 import { useNavigate, Link } from "react-router-dom";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import userService from "../../utils/userService";
@@ -13,23 +13,24 @@ import {
   Message,
   Segment,
 } from "semantic-ui-react";
-import { useState } from 'react';
+import { useState } from "react";
 
-export default function LoginPage(props){
+export default function LoginPage(props) {
   const [error, setError] = useState("");
-   const [state, setState] = useState ({
+  const [state, setState] = useState({
     email: "",
     password: "",
-   });
-const navigate = useNavigate();
+    steamLogin: "",
+  });
+  const navigate = useNavigate();
 
-   function handleChange(e) {
-     setState({
-       ...state,
-       [e.target.name]: e.target.value,
-     });
-   }
-   async function handleSubmit(e) {
+  function handleChange(e) {
+    setState({
+      ...state,
+      [e.target.name]: e.target.value,
+    });
+  }
+  async function handleSubmit(e) {
     e.preventDefault();
 
     try {
@@ -41,7 +42,7 @@ const navigate = useNavigate();
     }
   }
 
-   return (
+  return (
     <Grid
       textAlign="center"
       style={{ height: "100vh", width: "100vw" }}
@@ -49,14 +50,18 @@ const navigate = useNavigate();
     >
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header as="h2" color="black" textAlign="center">
-          <Image style = {{ width: 500, height: 500 }} src="https://i.imgur.com/NK6Ofjs.jpg" /> Login
+          <Image
+            style={{ width: 500, height: 500 }}
+            src="https://i.imgur.com/NK6Ofjs.jpg"
+          />{" "}
+          Login
         </Header>
         <Form onSubmit={handleSubmit}>
           <Segment stacked>
             <Form.Input
               type="email"
               name="email"
-              placeholder="email"
+              placeholder="Email"
               value={state.email}
               onChange={handleChange}
               required
@@ -64,8 +69,16 @@ const navigate = useNavigate();
             <Form.Input
               name="password"
               type="password"
-              placeholder="password"
+              placeholder="Password"
               value={state.password}
+              onChange={handleChange}
+              required
+            />
+            <Form.Input
+              name="steamLogin"
+              type="steamLogin"
+              placeholder="Steam Login"
+              value={state.steamLogin}
               onChange={handleChange}
               required
             />
@@ -87,4 +100,3 @@ const navigate = useNavigate();
     </Grid>
   );
 }
-

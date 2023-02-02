@@ -20,30 +20,46 @@ export default function App() {
     setUser(userService.getUser()); // getUser, gets the jwt from localstorage and decodes it
   }
   function handleLogout() {
-
-    console.log('being called')
+    console.log("being called");
     userService.logout();
     setUser(null);
   }
   if (user) {
-// Find the route that matches with the browser, authenticated routes vs non:
+    // Find the route that matches with the browser, authenticated routes vs non:
+    return (
+      <Routes>
+        <Route
+          path="/"
+          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+        />
+        {/* <Route
+          path="/:username"
+          element={
+            <ProfilePage loggedUser={user} handleLogout={handleLogout} />
+          }
+        /> */}
+        <Route path="/*" element={<Navigate to="/" />} />
+      </Routes>
+    );
+  }
   return (
     <Routes>
-      <Route path="/" element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}/>
-      {/* <Route path="/:username" element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />} /> */}
-      <Route path="/*" element={<Navigate to="/" />} />
+      <Route path="/" element={<HomePage />} />
+      <Route
+        path="/login"
+        element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+      />
+      <Route
+        path="/signup"
+        element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin} />}
+      />
+      {/* <Route
+        path="/:username"
+        element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />}
+      /> */}
+      <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
   );
-}
-return (
-<Routes>
-<Route path="/" element={<HomePage />}/>
-<Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
-<Route path="/signup" element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin}/>} />
-{/* <Route path="/:username" element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />} /> */}
-<Route path="/*" element={<Navigate to="/login" />} />
-</Routes>
-);
 }
 
 //pass down a function
