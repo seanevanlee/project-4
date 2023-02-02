@@ -1,5 +1,6 @@
 import { Card, Icon, Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+import { STATES } from "mongoose";
 
 function HeroCard({ post, isProfile, addLike, removeLike, loggedUser }) {
   // const likedIndex = post.likes.findIndex(like => like.username === loggedUser.username)
@@ -19,7 +20,7 @@ function HeroCard({ post, isProfile, addLike, removeLike, loggedUser }) {
                 src={
                   post?.user?.photoUrl
                     ? post?.user?.photoUrl
-                    : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+                    : "https://i.imgur.com/jKNFcgw.png"
                 }
               />
               {post?.user?.username}
@@ -31,6 +32,9 @@ function HeroCard({ post, isProfile, addLike, removeLike, loggedUser }) {
       <Image src={`${post?.photoUrl}`} wrapped ui={false} />
       <Card.Content>
         <Card.Description>
+          <strong>
+            <u>Player's Great Idea:</u>
+          </strong>
           <div>
             {" "}
             <b>Suggested Name: </b> {post?.hero}

@@ -9,9 +9,7 @@ function PlayerBio({ user }) {
         <Grid.Column>
           <Image
             src={`${
-              user.photoUrl
-                ? user.photoUrl
-                : "https://react.semantic-ui.com/images/wireframe/square-image.png"
+              user.photoUrl ? user.photoUrl : "https://i.imgur.com/jKNFcgw.png"
             } `}
             avatar
             size="small"

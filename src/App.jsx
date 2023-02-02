@@ -25,7 +25,7 @@ export default function App() {
     setUser(null);
   }
   if (user) {
-    // Find the route that matches with the browser, authenticated routes vs non:
+    // Find the route that matches with the browser, authenticated routes vs non-authenticated:
     return (
       <Routes>
         <Route
@@ -39,12 +39,16 @@ export default function App() {
           }
         /> */}
         <Route path="/*" element={<Navigate to="/" />} />
+        {/* <Route
+          path="/*"
+          element={<Redirect to="https://www.dota2.com/home" />}
+        /> */}
       </Routes>
     );
   }
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      {/* <Route path="/login" element={<LoginPage />} /> */}
       <Route
         path="/login"
         element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />}
