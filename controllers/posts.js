@@ -25,6 +25,7 @@ function update(req, res) {
   });
 }
 
+// Add a use navigate to front-end/form's handlesubmit
 function create(req, res) {
   console.log(req.user, " <- req.user", req.body, req.file);
 
