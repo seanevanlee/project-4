@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import * as postsAPI from "./utils/postApi";
 
 import { Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
@@ -10,9 +11,29 @@ import FeedPage from "./pages/FeedPage/FeedPage";
 // import ProfilePage from "./pages/ProfilePage/ProfilePage";
 
 import userService from "./utils/userService";
+import EditPostPage from "./pages/EditPostPage/EditPostPage";
 
 export default function App() {
   const [user, setUser] = useState(userService.getUser()); // if theres a token, grab it, if not the value will be null
+  const [posts, setPosts] = useState([]);
+  // const [loading, setLoading] = useState(true);
+
+  // Feed page needs all of the posts to transform arrays into page display
+  async function getPosts() {
+    try {
+      const response = await postsAPI.getAll();
+      console.log(response, " data");
+      setPosts(response.data);
+      setLoading(false);
+    } catch (err) {
+      console.log(err.message, " this is the error in getPosts");
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    getPosts();
+  }, []);
 
   // we need a function to pass down to LoginPage or the Signup page to be called after
   // the api request to login or sign up has been made
@@ -30,7 +51,14 @@ export default function App() {
       <Routes>
         <Route
           path="/"
-          element={<FeedPage loggedUser={user} handleLogout={handleLogout} />}
+          element={
+            <FeedPage
+              posts={posts}
+              setPosts={setPosts}
+              loggedUser={user}
+              handleLogout={handleLogout}
+            />
+          }
         />
         {/* <Route
           path="/:username"
@@ -38,6 +66,10 @@ export default function App() {
             <ProfilePage loggedUser={user} handleLogout={handleLogout} />
           }
         /> */}
+        <Route
+          path="/posts/edit/:id"
+          element={<EditPostPage posts={posts} />}
+        />
         <Route path="/*" element={<Navigate to="/" />} />
         {/* <Route
           path="/*"

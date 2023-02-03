@@ -10,7 +10,20 @@ const BUCKET_NAME = process.env.BUCKET_NAME;
 export default {
   create,
   index,
+  update,
 };
+
+function update(req, res) {
+  // Take ID to find the one to update
+  // apiPosts/:id
+  const { id } = req.params;
+  const { hero, heroUltimate } = req.body;
+  console.log("UPDATING " + hero);
+  console.log("heroUltimate: ", heroUltimate);
+  Post.findByIdAndUpdate(id, { hero, heroUltimate }).then((newHero) => {
+    res.json(newHero);
+  });
+}
 
 function create(req, res) {
   console.log(req.user, " <- req.user", req.body, req.file);

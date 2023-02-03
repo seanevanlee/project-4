@@ -1,5 +1,5 @@
 import PageHeader from "../../components/PageHeader/PageHeader";
-import AddHeroForm from "../../components/AddHeroForm/AddHeroForm";
+import HeroForm from "../../components/HeroForm/HeroForm";
 import { useState, useEffect } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import { Grid } from "semantic-ui-react";
@@ -7,10 +7,10 @@ import HeroDisplay from "../../components/HeroDisplay/HeroDisplay";
 import * as postsAPI from "../../utils/postApi";
 // import * as likesAPI from "../../utils/likeApi";
 
-function FeedPage({ loggedUser, handleLogout }) {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+// Pass down
+function FeedPage({ loggedUser, handleLogout, posts, setPosts }) {
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   // async function addLike(postId) {
   //     // postId exists in the card component
@@ -45,25 +45,10 @@ function FeedPage({ loggedUser, handleLogout }) {
       setLoading(false);
     } catch (err) {
       console.log(err.message, "error in addPost");
+      console.error(err);
       setError("Error creating post, please try again");
     }
   }
-
-  async function getPosts() {
-    try {
-      const response = await postsAPI.getAll();
-      console.log(response, " data");
-      setPosts(response.data);
-      setLoading(false);
-    } catch (err) {
-      console.log(err.message, " this is the error in getPosts");
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    getPosts();
-  }, []);
 
   if (error) {
     return (
@@ -79,11 +64,12 @@ function FeedPage({ loggedUser, handleLogout }) {
       <Grid.Row>
         <Grid.Column>
           <PageHeader handleLogout={handleLogout} loggedUser={loggedUser} />
+          {loading && "LOADING..."}
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <AddHeroForm handleAddPost={handleAddPost} />
+          <HeroForm handleSubmit={handleAddPost} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>

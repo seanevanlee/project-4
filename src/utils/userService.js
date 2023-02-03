@@ -7,7 +7,7 @@ function signup(user) {
     fetch(BASE_URL + "signup", {
       method: "POST",
       headers: new Headers({ "Content-Type": "application/json" }), // If you are sending a file/photo over
-      // what do datatype do you need to change this too?
+      // what do datatype do you need to change this to?
       body: JSON.stringify(user),
     })
       .then((res) => {

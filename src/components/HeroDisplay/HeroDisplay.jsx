@@ -7,7 +7,7 @@ export default function HeroDisplay({
   posts,
   numPhotosCol,
   isProfile,
-  loading,
+  // loading,
   addLike,
   removeLike,
   loggedUser,
@@ -33,7 +33,7 @@ export default function HeroDisplay({
             //   isProfile={isProfile}
             //   addLike={addLike}
             //   removeLike={removeLike}
-            //   loggedUser={loggedUser}
+            loggedUser={loggedUser}
           />
         );
       })}

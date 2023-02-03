@@ -2,9 +2,11 @@ import { set } from "mongoose";
 import { useState } from "react";
 import { Form, Segment, Button } from "semantic-ui-react";
 
-function AddHeroForm({ handleAddPost }) {
-  const [hero, setHero] = useState("");
-  const [heroUltimate, setHeroUltimate] = useState("");
+function HeroForm({ handleSubmit, currentValues = {} }) {
+  const [hero, setHero] = useState(currentValues.hero || "");
+  const [heroUltimate, setHeroUltimate] = useState(
+    currentValues.heroUltimate || ""
+  );
   const [photo, setPhoto] = useState(null);
 
   function handleHeroChange(e) {
@@ -19,18 +21,19 @@ function AddHeroForm({ handleAddPost }) {
     setPhoto(e.target.files[0]);
   }
 
-  function handleSubmit(e) {
+  function baseHandleSubmit(e) {
     e.preventDefault();
 
     const formData = new FormData();
+    formData.append("_id", currentValues._id);
     formData.append("hero", hero);
     formData.append("heroUltimate", heroUltimate);
     formData.append("photo", photo);
-    handleAddPost(formData);
+    handleSubmit(formData);
   }
   return (
     <Segment>
-      <Form autoComplete="off" onSubmit={handleSubmit}>
+      <Form autoComplete="off" onSubmit={baseHandleSubmit}>
         <Form.Input
           className="form-control"
           name="hero"
@@ -55,11 +58,11 @@ function AddHeroForm({ handleAddPost }) {
           onChange={handleFileInput}
         />
         <Button type="submit" className="btn">
-          Cool Hero!
+          Submit a Cool Hero!
         </Button>
       </Form>
     </Segment>
   );
 }
 
-export default AddHeroForm;
+export default HeroForm;

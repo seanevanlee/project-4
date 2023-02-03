@@ -25,6 +25,11 @@ function HeroCard({ post, isProfile, addLike, removeLike, loggedUser }) {
               />
               {post?.user?.username}
             </Link>
+            <div>
+              {post.user._id === loggedUser._id && (
+                <Link to={"/posts/edit/" + post._id}>Edit</Link>
+              )}
+            </div>
           </Card.Header>
         </Card.Content>
       )}

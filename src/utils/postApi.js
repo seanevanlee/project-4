@@ -20,6 +20,25 @@ export function create(data) {
   });
 }
 
+export function update(data) {
+  return fetch(BASE_URL + data.get("_id"), {
+    method: "PUT",
+    body: data,
+    headers: {
+      Authorization: "Bearer " + tokenService.getToken(),
+    },
+  }).then((responseFromTheServer) => {
+    if (responseFromTheServer.ok) return responseFromTheServer.json();
+    return responseFromTheServer.json().then((res) => {
+      console.log(
+        res,
+        " <- this is the response in Posts update function in your utils folder"
+      );
+      throw new Error("Something went wrong in update Post");
+    });
+  });
+}
+
 export function getAll() {
   return fetch(BASE_URL, {
     headers: {
