@@ -21,11 +21,12 @@ function update(req, res) {
   console.log("UPDATING " + hero);
   console.log("heroUltimate: ", heroUltimate);
   Post.findByIdAndUpdate(id, { hero, heroUltimate }).then((newHero) => {
-    res.json(newHero);
+    //console.log({...newHero, hero, heroUltimate });
+    res.json({ id, hero, heroUltimate });
   });
 }
 
-// Add a use navigate to front-end/form's handlesubmit
+// Add a use navigate to front-end/form's handlesubmit to connect front/back ends with new stuff so you don't have to refresh
 function create(req, res) {
   console.log(req.user, " <- req.user", req.body, req.file);
 

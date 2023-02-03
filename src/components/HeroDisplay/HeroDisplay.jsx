@@ -26,6 +26,7 @@ export default function HeroDisplay({
   return (
     <Card.Group itemsPerRow={numPhotosCol} stackable>
       {posts.map((post) => {
+        //console.log(post);
         return (
           <HeroCard
             post={post}

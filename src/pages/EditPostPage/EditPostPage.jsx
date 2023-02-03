@@ -3,10 +3,14 @@ import { useMemo } from "react";
 import { useParams } from "react-router-dom";
 import HeroForm from "../../components/HeroForm/HeroForm";
 import * as postsAPI from "../../utils/postApi";
+import { useNavigate } from "react-router-dom";
 
+// Return the new stuff (hero/heroultimate) as well as id (which post it knows to be updated)
+// Navigate simultaneously back to the other page
 // https://beta.reactjs.org/reference/react/useMemo
 
-export default function EditPostPage({ posts }) {
+export default function EditPostPage({ posts, setPosts }) {
+  const nav = useNavigate();
   const { id } = useParams();
   const [error, setError] = useState("");
   //   const [posts, setPosts] = useState([]);
@@ -21,9 +25,27 @@ export default function EditPostPage({ posts }) {
     try {
       setLoading(true);
       const response = await postsAPI.update(hero);
-      console.log(response, " handle add post");
-      setPosts([response.post, ...posts]);
+      console.log(response);
+      console.log(hero);
+      console.log(response, " handle update post");
+      //setPosts([response.post, ...posts]);
+      setPosts((posts) =>
+        posts.map((post) => {
+          //  console.log(post);
+          // map needs to return something, use curleys.
+          //console.log(post._id);
+          return post._id === response.id
+            ? {
+                ...post,
+                hero: response.hero,
+                heroUltimate: response.heroUltimate,
+              }
+            : post;
+        })
+      );
+      // Take each post then if ID = what you need then change, if not then leave it alone.
       setLoading(false);
+      nav("/");
     } catch (err) {
       console.log(err.message, "error in addPost");
       console.error(err);

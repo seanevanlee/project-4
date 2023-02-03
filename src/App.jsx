@@ -24,10 +24,10 @@ export default function App() {
       const response = await postsAPI.getAll();
       console.log(response, " data");
       setPosts(response.data);
-      setLoading(false);
+      //setLoading(false);
     } catch (err) {
       console.log(err.message, " this is the error in getPosts");
-      setLoading(false);
+      //setLoading(false);
     }
   }
 
@@ -68,7 +68,7 @@ export default function App() {
         /> */}
         <Route
           path="/posts/edit/:id"
-          element={<EditPostPage posts={posts} />}
+          element={<EditPostPage posts={posts} setPosts={setPosts} />}
         />
         <Route path="/*" element={<Navigate to="/" />} />
         {/* <Route
