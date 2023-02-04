@@ -44,7 +44,7 @@ function PlayerBio({ loggedUser }) {
             <h3>{user.username}</h3>
           </Segment>
           <Segment>
-            <span> Dota 2 Player!</span>
+            <span> Dota 2 Player! </span>
 
             {heroes.map((hero) => {
               //console.log(post);
