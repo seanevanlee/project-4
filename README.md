@@ -12,11 +12,12 @@ here
 
 #### Technologies Used:
 
-here
+MERN Stack, HTML, CSS, AWS
 
 ##### Getting Started:
 
-A link to the deployed app (Heroku)
-A link to the Trello board used for the project's planning that includes user stories, wireframes & an ERD.
+A link to the deployed app: https://easy-jade-wombat-vest.cyclic.app/
+
+A link to the Trello board used for the project's planning that includes user stories, wireframes & an ERD: https://trello.com/b/e3HOEMjr/project-4
 
 ##### Next Steps:

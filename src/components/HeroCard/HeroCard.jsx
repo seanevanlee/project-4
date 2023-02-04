@@ -6,6 +6,11 @@ function HeroCard({ post, isProfile, addLike, removeLike, loggedUser }) {
   // const likedIndex = post.likes.findIndex(like => like.username === loggedUser.username)
   // const likeColor = likedIndex > -1 ?'red' : 'grey'
   // const clickHandler = likedIndex > -1 ? () => removeLike(post.likes[likedIndex]._id) : () => addLike(post._id)
+  async function deleteHero(e) {
+    await fetch("/api/posts/" + post._id, { method: "DELETE" });
+    location.reload();
+  }
+
   return (
     <Card key={post?._id} raised>
       {isProfile ? (
@@ -28,6 +33,12 @@ function HeroCard({ post, isProfile, addLike, removeLike, loggedUser }) {
             <div>
               {post.user._id === loggedUser._id && (
                 <Link to={"/posts/edit/" + post._id}>Edit</Link>
+              )}
+            </div>
+            {/* Delete can go under Edit */}
+            <div>
+              {post.user._id === loggedUser._id && (
+                <button onClick={deleteHero}>Delete</button>
               )}
             </div>
           </Card.Header>

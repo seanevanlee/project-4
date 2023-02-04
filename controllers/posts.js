@@ -11,7 +11,19 @@ export default {
   create,
   index,
   update,
+  deleteHero,
 };
+
+function deleteHero(req, res) {
+  // Take ID to find the one to delete
+  // apiPosts/:id
+  const { id } = req.params;
+
+  Post.findByIdAndDelete(id).then(() => {
+    //console.log({...newHero, hero, heroUltimate });
+    res.json({ id });
+  });
+}
 
 function update(req, res) {
   // Take ID to find the one to update

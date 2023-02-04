@@ -8,8 +8,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 import SignUpPage from "./pages/SignupPage/SignupPage";
 import FeedPage from "./pages/FeedPage/FeedPage";
-// import ProfilePage from "./pages/ProfilePage/ProfilePage";
-
+import PlayerBio from "./components/PlayerBio/PlayerBio";
 import userService from "./utils/userService";
 import EditPostPage from "./pages/EditPostPage/EditPostPage";
 
@@ -60,12 +59,10 @@ export default function App() {
             />
           }
         />
-        {/* <Route
+        <Route
           path="/:username"
-          element={
-            <ProfilePage loggedUser={user} handleLogout={handleLogout} />
-          }
-        /> */}
+          element={<PlayerBio loggedUser={user} handleLogout={handleLogout} />}
+        />
         <Route
           path="/posts/edit/:id"
           element={<EditPostPage posts={posts} setPosts={setPosts} />}
@@ -89,10 +86,10 @@ export default function App() {
         path="/signup"
         element={<SignUpPage handleSignUpOrLogin={handleSignUpOrLogin} />}
       />
-      {/* <Route
+      <Route
         path="/:username"
-        element={<ProfilePage loggedUser={user} handleLogout={handleLogout} />}
-      /> */}
+        element={<PlayerBio loggedUser={user} handleLogout={handleLogout} />}
+      />
       <Route path="/*" element={<Navigate to="/login" />} />
     </Routes>
   );

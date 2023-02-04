@@ -5,7 +5,7 @@ import usersCtrl from "../../controllers/users.js";
 /*---------- Public Routes ----------*/
 router.post("/signup", usersCtrl.signup);
 router.post("/login", usersCtrl.login);
-// router.get("/:username", usersCtrl.profile);
+router.get("/:username", usersCtrl.profile);
 
 /*---------- Protected Routes ----------*/
 

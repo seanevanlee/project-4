@@ -7,4 +7,5 @@ const upload = multer();
 router.post("/", upload.single("photo"), postsCtrl.create);
 router.get("/", postsCtrl.index);
 router.put("/:id", upload.single("photo"), postsCtrl.update);
+router.delete("/:id", postsCtrl.deleteHero);
 export default router;
