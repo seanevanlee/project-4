@@ -24,7 +24,7 @@ A lot of thinking goes into creating a new hero and certainly DOTA's developer s
 
 #### Technologies Used:
 
-MERN Stack, HTML, CSS, AWS
+MERN Stack, HTML, CSS, AWS S3 Bucket, Semantic UI
 
 ##### Getting Started:
 
