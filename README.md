@@ -20,7 +20,7 @@ A lot of thinking goes into creating a new hero and certainly DOTA's developer s
 
 ![PLAYER BIO](https://i.imgur.com/aC9DIFw.png)
 
-![SOCIAL] (https://i.imgur.com/Fex9Z70.png)
+![SOCIAL](https://i.imgur.com/Fex9Z70.png)
 
 #### Technologies Used:
 
